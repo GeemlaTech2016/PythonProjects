@@ -1,0 +1,116 @@
+{% extends "myapp/mother_frame.html"%}
+{% block maincontent %}
+
+<div class="page-bar">
+                            <ul class="page-breadcrumb">
+                                <li>
+                                    <a href="/dashboard/">Home</a>
+                                    <i class="fa fa-circle"></i>
+                                </li>
+                                <li>
+                                    <span>Dashboard</span>
+                                </li>
+                            </ul>
+
+                        </div>
+{%if request.session.role == 'nucadmin'%}
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <a class="dashboard-stat dashboard-stat-v2 blue" href="/approvedunis/">
+                                    <div class="visual">
+                                        <i class="fa fa-file-o"></i>
+                                    </div>
+                                    <div class="details">
+                                        <div class="number">
+                                        <span data-counter="counterup" data-value="{{universities}}">0</span>
+                                        </div>
+                                        <div class="desc"> Universities </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <a class="dashboard-stat dashboard-stat-v2 red" href="#">
+                                    <div class="visual">
+                                        <i class="fa fa-bar-chart-o"></i>
+                                    </div>
+                                    <div class="details">
+                                        <div class="number">
+                                        <span data-counter="counterup" data-value="{{students}}">0</span>
+                                        </div>
+                                        <div class="desc"> Students </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <a class="dashboard-stat dashboard-stat-v2 green" href="#">
+                                    <div class="visual">
+                                        <i class="fa fa-shopping-cart"></i>
+                                    </div>
+                                    <div class="details">
+                                        <div class="number">
+                                        <span data-counter="counterup" data-value="{{faculties}}">0</span>
+                                        </div>
+                                        <div class="desc"> Faculties </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <a class="dashboard-stat dashboard-stat-v2 purple" href="#">
+                                    <div class="visual">
+                                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="details">
+                                        <div class="number">
+                                        <span data-counter="counterup" data-value="{{departments}}">0</span>
+                                        </div>
+                                        <div class="desc"> Departments </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+{%elif request.session.role == 'uniadmin'%}
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <a class="dashboard-stat dashboard-stat-v2 blue" href="/newstudent/">
+                                    <div class="visual">
+                                        <i class="fa fa-file-o"></i>
+                                    </div>
+                                    <div class="details">
+                                        <div class="number">
+                                        <span data-counter="counterup" data-value="{{students}}">0</span>
+                                        </div>
+                                        <div class="desc"> New Student </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <a class="dashboard-stat dashboard-stat-v2 green" href="/faculties/">
+                                    <div class="visual">
+                                        <i class="fa fa-shopping-cart"></i>
+                                    </div>
+                                    <div class="details">
+                                        <div class="number">
+                                        <span data-counter="counterup" data-value="{{faculties}}">0</span>
+                                        </div>
+                                        <div class="desc"> New Faculty </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <a class="dashboard-stat dashboard-stat-v2 green" href="/departments/">
+                                    <div class="visual">
+                                        <i class="fa fa-shopping-cart"></i>
+                                    </div>
+                                    <div class="details">
+                                        <div class="number">
+                                        <span data-counter="counterup" data-value="{{depts}}">0</span>
+                                        </div>
+                                        <div class="desc"> New Department </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+{%endif%}
+{% endblock %}

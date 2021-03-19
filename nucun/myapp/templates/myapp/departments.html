@@ -1,0 +1,112 @@
+{% extends "myapp/mother_frame.html"%}
+{% block maincontent %}
+
+<div class="row">
+                            <div class="col-md-6">
+                                <div class="portlet light bordered">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="icon-speech font-green"></i>
+                                            <span class="caption-subject bold font-green uppercase">Manage Departments</span>
+                                        </div>
+                                        <div class="actions">
+                                            <!--<a href="javascript:;" class="btn btn-circle btn-outline green">
+                                                <i class="fa fa-pencil"></i> Edit </a>
+                                            <a href="javascript:;" class="btn btn-circle blue-steel btn-outline">
+                                                <i class="fa fa-plus"></i> Add </a>-->
+                                            <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;"> </a>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <form role="form" method="post" action="/adddepartment/"> {%csrf_token%}
+                                            <div class="form-group">
+                                                <label class="control-label">Department Name</label>
+                                                <input type="text" placeholder="Computer Science" required name="deptname" class="form-control" /> </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label">Faculty</label>
+                                                    <select class="form-control input-sm" name="faculty">
+                                                        {%for fac in faculties%}
+                                                        <option value="{{fac.id}}">{{fac.facname}}</option>
+                                                        {%endfor%}
+                                                    </select>
+                                            </div>
+
+                                            <div class="margin-top-10">
+                                                <button type="submit" name="save" class="btn green">Save Changes </button>
+                                                <button type="reset" class="btn default">Cancel </button>
+                                            
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                        </div>
+                    <div class="col-md-6">
+					<!-- BEGIN SAMPLE TABLE PORTLET-->
+					<div class="portlet box purple">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-comments"></i>Department List
+							</div>
+							<div class="tools">
+								<a href="javascript:;" class="collapse">
+								</a>
+								<a href="#portlet-config" data-toggle="modal" class="config">
+								</a>
+								<a href="javascript:;" class="reload">
+								</a>
+								<a href="javascript:;" class="remove">
+								</a>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<div class="table-scrollable">
+								<table class="table table-striped table-hover">
+								<thead>
+								<tr>
+									<th>
+										 #
+									</th>
+                                    <th>
+										 Department Name
+									</th>
+									<th>
+										 Faculty Name
+									</th>
+									<th>
+
+									</th>
+								</tr>
+								</thead>
+								<tbody>
+                                    {%for key, dept in departments.items%}
+								<tr>
+									<td>
+                                        {{forloop.counter}}
+									</td>
+                                    <td>
+										 {{dept.deptname}}
+									</td>
+									<td>
+										 {{dept.facname}}
+									</td>
+									<td>
+                                        <form onsubmit="return confirm('Delete Department?') " action="/removedept/" method="post" name="deleteform">
+                                            {%csrf_token%}
+                                            <input type="hidden" name="delid" value="{{dept.id}}">
+                                            <button title="Delete" type="submit" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+                                        </form>
+									</td>
+
+                                </tr>
+                                    {%endfor%}
+
+								</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!-- END SAMPLE TABLE PORTLET-->
+				</div>
+</div>
+{% endblock %}
